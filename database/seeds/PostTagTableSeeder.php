@@ -2,20 +2,23 @@
 
 use Illuminate\Database\Seeder;
 
-class TagTableSeeder extends Seeder {
+class PostTagTableSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         $faker = Faker\Factory::create();
 
-        $limit = 10;
+        $limit = 40;
 
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('tags')->insert([
-                'tagname' => $faker->unique()->word,
+            DB::table('posts')->insert([
+                'post_id' => rand(1,20),
+                'tag_id' => rand(1,10),
             ]);
         }
     }
