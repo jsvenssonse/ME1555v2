@@ -28,6 +28,6 @@ class UserController extends Controller{
         $data['firstname'] = $request->input('firstname');
         $data['lastname'] = $request->input('lastname');
         $data['email'] = $request->input('email');
-        //DB::table('users')->where('id', $request->input('id')->update($data));
+        DB::table('users')->where('id', $request->input('id')->update($data));
     }
 }
