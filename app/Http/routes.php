@@ -10,12 +10,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/test',function(){
+    return view('test');
+});
+
 
 //Users
 Route::get('/users', 'UserController@showUsers');
 Route::get('/user/{id}', 'UserController@showUser');
 Route::get('/user/{id}/posts', 'UserController@showUserPost');
-Route::put('/user/edit', 'UserController@editUser');
+Route::put('/user/{id}/edit', 'UserController@editUser');
 
 //Posts
 Route::get('/posts', 'PostController@showPosts');
