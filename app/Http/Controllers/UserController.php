@@ -25,9 +25,9 @@ class UserController extends Controller{
     }
 
     public function editUser(Request $request) {
-        $data['firstname'] = $request->input('firstname');
-        $data['lastname'] = $request->input('lastname');
-        $data['email'] = $request->input('email');
-        //DB::table('users')->where('id', $request->input('id')->update($data));
+        $data['firstname'] = $request->firstname;
+        $data['lastname'] = $request->lastname;
+        $data['email'] = $request->email;
+        DB::table('users')->where('id', $request->id)->update($data);
     }
 }
