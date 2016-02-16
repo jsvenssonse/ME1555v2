@@ -1,6 +1,6 @@
 vendor/
 node_modules/
-config/
+config/database.php
 
 # Laravel 4 specific
 bootstrap/compiled.php
