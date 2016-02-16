@@ -23,4 +23,12 @@ class UserController extends Controller{
         $posts = DB::select('SELECT * FROM posts WHERE USER_ID = :user_id', array('user_id' => $user_id));
         return json_encode($posts);
     }
+    
+    public function editUser($request) {
+        $data['firstname'] = $request->input('firstname');
+        $data['lastname'] = $request->input('lastname');
+        $data['email'] = $request->input('email');
+        
+        DB::table('users')->where('id', $request->input('id')->update($data));
+    }
 }

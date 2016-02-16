@@ -15,10 +15,12 @@
 Route::get('/users', 'UserController@showUsers');
 Route::get('/user/{id}', 'UserController@showUser');
 Route::get('/user/{id}/posts', 'UserController@showUserPost');
+Route::put('/user/edit', 'UserController@editUser');
 
 //Posts
 Route::get('/posts', 'PostController@showPosts');
 Route::get('/post/{id}', 'PostController@showPost');
+Route::put('/post/edit', 'PostController@editPost');
 
 //Tag
 Route::get('/tags', 'TagController@showTags');
