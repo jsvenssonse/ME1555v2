@@ -11,9 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Users
+Route::get('/users', 'UserController@showUsers');
+Route::get('/user/{id}', 'UserController@showUser');
+Route::get('/user/{id}/posts', 'UserController@showUserPost');
+
+//Posts
+Route::get('/posts', 'PostController@showPosts');
+Route::get('/post/{id}', 'PostController@showPost');
+
+//Tag
+Route::get('/tags', 'TagController@showTags');
+Route::get('/tag/{name}', 'TagController@showTag');
+
+
+
+
+
 
 
 /*
