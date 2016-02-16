@@ -16,7 +16,7 @@ class PostTagTableSeeder extends Seeder
         $limit = 40;
 
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('posts')->insert([
+            DB::table('post_tag')->insert([
                 'post_id' => rand(1,20),
                 'tag_id' => rand(1,10),
             ]);

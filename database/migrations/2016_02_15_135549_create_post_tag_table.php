@@ -14,8 +14,8 @@ class CreatePostTagTable extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('post_id');
-            $table->string('tag_id');
+            $table->integer('post_id');
+            $table->integer('tag_id');
             $table->timestamps();    
         });
     }
