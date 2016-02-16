@@ -18,11 +18,11 @@ Route::get('/user/{id}/posts', 'UserController@showUserPost');
 
 //Posts
 Route::get('/posts', 'postController@showPosts');
-Route::get('/posts/{id}', 'postController@showPost');
+Route::get('/post/{id}', 'postController@showPost');
 
 //Tag
 Route::get('/tags', 'tagController@showTags');
-Route::get('/tags/{name}', 'tagController@showTag');
+Route::get('/tag/{name}', 'tagController@showTag');
 
 
 
