@@ -15,10 +15,15 @@ class TagController extends Controller
     }
 
     public function showTag($name){
-        $tag_id = DB::select('SELECT "id" FROM tags WHERE name = :name', ['name' => $name]);
-        return $tag_id;
-        $posts = DB::select('SELECT "post_id" FROM post_tag WHERE tag_id = :tag_id', [':tag_id' => $tag_id]);
-        $post = DB::select('SELECT * FROM posts WHERE id = :id');
-        return json_encode($tas);
+        $tag = DB::select('SELECT id FROM tags WHERE name = :name', ['name' => $name])[0];
+        $post_ids = DB::select('SELECT post_id FROM post_tag WHERE tag_id = :tag_id', [':tag_id' => $tag->id]);
+        if(!empty($post_ids)){
+            foreach ($post_ids as $key) {
+                $posts[] = DB::select('SELECT * FROM posts WHERE id = :post_id', ['post_id' =>  $key->post_id]);
+            }
+            return json_encode($posts);
+        } else {
+            return json_encode(false);
+        }
     }
 }
