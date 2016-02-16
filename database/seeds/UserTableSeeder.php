@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 1;
+        $limit = 10;
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('users')->insert([ //,
