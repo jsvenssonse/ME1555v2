@@ -10,9 +10,13 @@
         </style>
     </head>
     <body>
-        <form action="user/1/edit" method="POST">
+
+        <form action="/user/edit" method="POST">
             <input type="hidden" name="_method" value="PUT">
-            <input type="hidden" name="firstname" value="kevin">
+            <input hidden="hidden" name="id" value="1" />
+            <input hidden="hidden" name="firstname" value="tada" />
+            <input hidden="hidden" name="lastname" value="tatouering" />
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>
