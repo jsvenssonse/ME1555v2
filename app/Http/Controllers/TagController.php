@@ -14,8 +14,11 @@ class TagController extends Controller
         return json_encode($tags);
     }
 
-    public function showTag($id){
-        $tags = DB::select('SELECT * FROM tags WHERE id = :id', ['id' => $id]);
-        return json_encode($tags);
+    public function showTag($name){
+        $tag_id = DB::select('SELECT "id" FROM tags WHERE name = :name', ['name' => $name]);
+        return $tag_id;
+        $posts = DB::select('SELECT "post_id" FROM post_tag WHERE tag_id = :tag_id', [':tag_id' => $tag_id]);
+        $post = DB::select('SELECT * FROM posts WHERE id = :id');
+        return json_encode($tas);
     }
 }

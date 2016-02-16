@@ -17,12 +17,12 @@ Route::get('/user/{id}', 'UserController@showUser');
 Route::get('/user/{id}/posts', 'UserController@showUserPost');
 
 //Posts
-Route::get('/posts', 'postController@showPosts');
-Route::get('/post/{id}', 'postController@showPost');
+Route::get('/posts', 'PostController@showPosts');
+Route::get('/post/{id}', 'PostController@showPost');
 
 //Tag
-Route::get('/tags', 'tagController@showTags');
-Route::get('/tag/{name}', 'tagController@showTag');
+Route::get('/tags', 'TagController@showTags');
+Route::get('/tag/{name}', 'TagController@showTag');
 
 
 
