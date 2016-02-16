@@ -16,13 +16,14 @@ class UserTableSeeder extends Seeder
         $limit = 10;
 
         for ($i = 0; $i < $limit; $i++) {
+            $email = $faker->unique()->email;
             DB::table('users')->insert([ //,
                 'username' => "admin",
                 'password' => "password",
                 'firstname' => $faker->unique()->name,
                 'lastname' => $faker->unique()->name,
-                'email' => $faker->unique()->email,
-                'stream_token' => $faker->password,
+                'email' => $email,
+                'stream_token' => hash('sha512', $email),
             ]);
         }
     }
