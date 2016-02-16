@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostTableSeeder extends Seeder {
+class TagTableSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
@@ -11,15 +11,13 @@ class PostTableSeeder extends Seeder {
     public function run() {
         $faker = Faker\Factory::create();
 
-        $limit = 20;
+        $limit = 10;
 
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('posts')->insert([
-                'user_id' => rand(1,10),
-                'title' => $faker->word,
-                'content' => $faker->text($maxNbChars = 200),
+            DB::table('tags')->insert([
+                'post_id' => rand(1,20),
+                'tagname' => $faker->word,
             ]);
         }
     }
 }
-

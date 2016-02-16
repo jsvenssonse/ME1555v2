@@ -19,7 +19,7 @@ class CreateUserTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->integer('stream_token');
+            $table->string('stream_token');
             $table->timestamps();    
         });
     }
