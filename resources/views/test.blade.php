@@ -10,7 +10,6 @@
         </style>
     </head>
     <body>
-
         <form method="POST" action="api/post/delete" accept-charset="UTF-8">
             <input name="_method" type="hidden" value="DELETE">
             <input hidden="hidden" name="id" value="21" />

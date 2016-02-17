@@ -57,7 +57,8 @@ class PostController extends Controller{
     public function createPost(Request $request) {
         $data['title'] = $request->title;
         $data['content'] = $request->content;
-        DB::table('posts')->insert(['title' => $data['title'], 'content' => $data['content']]);
+        $data['user_id'] = $request->user_id;
+        DB::table('posts')->insert($data);
     }
 
     public function deletePost(Request $request){
