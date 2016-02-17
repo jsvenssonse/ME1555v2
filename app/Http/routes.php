@@ -22,7 +22,7 @@ Route::get('/user/{id}/posts', 'UserController@showUserPost');
 Route::put('/user/edit', 'UserController@editUser');
 
 //Posts
-Route::get('/posts', 'PostController@showPosts');
+Route::get('/posts', ['middleware' => 'cors' ,'uses' => 'PostController@showPosts']);
 Route::get('/post/{id}', 'PostController@showPost');
 Route::put('/post/edit', 'PostController@editPost');
 
