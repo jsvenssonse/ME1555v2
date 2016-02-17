@@ -24,4 +24,11 @@ class PostController extends Controller{
         $data['content'] = $request->content;
         DB::table('posts')->where('id', $request->id)->update($data);
     }
+    
+    public function createPost(Request $request) {
+        $data['title'] = $request->title;
+        $data['content'] = $request->content;
+        DB::table('posts')->insert(['title' => $data['title'], 'content' => $data['content']]);
+        var_dump($data);
+    }
 }

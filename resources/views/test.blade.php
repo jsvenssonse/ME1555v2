@@ -11,9 +11,7 @@
     </head>
     <body>
 
-        <form action="/post/edit" method="POST">
-            <input type="hidden" name="_method" value="PUT">
-            <input hidden="hidden" name="id" value="1" />
+        <form action="/post/create" method="POST">
             <input hidden="hidden" name="title" value="Jespers avhandling" />
             <input hidden="hidden" name="content" value="Jag heter jesper och är cool" />
             <input type="submit" value="Submit">

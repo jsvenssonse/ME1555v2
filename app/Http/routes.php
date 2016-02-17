@@ -25,6 +25,7 @@ Route::put('/user/edit', 'UserController@editUser');
 Route::get('/posts', 'PostController@showPosts');
 Route::get('/post/{id}', 'PostController@showPost');
 Route::put('/post/edit', 'PostController@editPost');
+Route::post('/post/create', 'PostController@createPost');
 
 //Tag
 Route::get('/tags', 'TagController@showTags');
