@@ -11,9 +11,10 @@
     </head>
     <body>
 
-        <form action="/post/create" method="POST">
-            <input hidden="hidden" name="title" value="Jespers avhandling" />
-            <input hidden="hidden" name="content" value="Jag heter jesper och är cool" />
+        <form method="POST" action="api/post/delete" accept-charset="UTF-8">
+            <input name="_method" type="hidden" value="DELETE">
+            <input hidden="hidden" name="id" value="21" />
+            <input hidden="hidden" name="user_id" value="0" />
             <input type="submit" value="Submit">
         </form>
     </body>
