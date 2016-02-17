@@ -18,4 +18,10 @@ class PostController extends Controller{
         $posts = DB::select('SELECT * FROM posts WHERE id = :id', ['id' => $id]);
         return json_encode($posts);
     }
+    
+    public function editPost(Request $request) {
+        $data['title'] = $request->title;
+        $data['content'] = $request->content;
+        DB::table('posts')->where('id', $request->id)->update($data);
+    }
 }
