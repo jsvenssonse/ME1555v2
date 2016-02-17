@@ -11,10 +11,8 @@
     </head>
     <body>
 
-        <form action="api/post/create" method="POST">
-            <input hidden="hidden" name="user_id" value="2" />
-            <input hidden="hidden" name="title" value="Jespers dwdw" />
-            <input hidden="hidden" name="content" value="Jag heter jesper och är cool" />
+        <form action="api/tag/create" method="POST">
+            <input hidden="hidden" name="name" value="Cellbiology" />
             <input type="submit" value="Submit">
         </form>
     </body>

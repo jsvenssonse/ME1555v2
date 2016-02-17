@@ -7,14 +7,14 @@ use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class TagController extends Controller
-{
-    public function showTags(){
+class TagController extends Controller {
+    
+    public function showTags() {
         $tags = DB::select('SELECT * FROM tags');
         return json_encode($tags);
     }
 
-    public function showTag($name){
+    public function showTag($name) {
         $tag = DB::select('SELECT id FROM tags WHERE name = :name', ['name' => $name])[0];
         $post_ids = DB::select('SELECT post_id FROM post_tag WHERE tag_id = :tag_id', [':tag_id' => $tag->id]);
         if(!empty($post_ids)){
@@ -26,4 +26,11 @@ class TagController extends Controller
             return json_encode(false);
         }
     }
+    
+    public function createTag(Request $request) {
+        $data['name'] = $request->name;
+        DB::table('tags')->insertGetId(['name' => $data['name'] ]);
+
+    }
+    
 }

@@ -29,6 +29,7 @@ Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
     //Tag
     Route::get('/tags', 'TagController@showTags');
     Route::get('/tag/{name}', 'TagController@showTag');
+    Route::post('/tag/create', 'TagController@createTag');
 
 });
 
