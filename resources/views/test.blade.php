@@ -10,14 +10,13 @@
         </style>
     </head>
     <body>
-        <form action="/user/edit" method="POST">
+
+        <form action="/post/edit" method="POST">
             <input type="hidden" name="_method" value="PUT">
-
             <input hidden="hidden" name="id" value="1" />
-            <input hidden="hidden" name="firstname" value="tada" />
-            <input hidden="hidden" name="lastname" value="tatouering" />
+            <input hidden="hidden" name="title" value="Jespers avhandling" />
+            <input hidden="hidden" name="content" value="Jag heter jesper och är cool" />
             <input type="submit" value="Submit">
-
         </form>
     </body>
 </html>
