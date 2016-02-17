@@ -13,7 +13,7 @@
 Route::get('/test',function(){
     return view('test');
 });
-Route::group(['prefix' => 'api'],['middleware' => ['cors']], function () {
+Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
     //Users
     Route::get('/users', 'UserController@showUsers');
     Route::get('/user/{id}', 'UserController@showUser');
