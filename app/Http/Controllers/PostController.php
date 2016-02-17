@@ -16,13 +16,9 @@ class PostController extends Controller{
             $tags = DB::table('post_tag')->where('post_id',$post->id)->get(['post_id', 'tag_id']);
             foreach ($tags as $tag) {
                 $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
-                foreach ($names as $name) {
-                    $tagnames[] = $name->name;
+                if(isset($names)){
+                    $post->tags = $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
                 }
-            }
-            if(isset($tagnames)){
-                $post->tags = $tagnames;
-                $tagnames = null;
             }
         }
         return json_encode($posts);
@@ -34,13 +30,9 @@ class PostController extends Controller{
             $tags = DB::table('post_tag')->where('post_id',$id)->get(['post_id', 'tag_id']);
             foreach ($tags as $tag) {
                 $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
-                foreach ($names as $name) {
-                    $tagnames[] = $name->name;
+                if(isset($names)){
+                    $post->tags = $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
                 }
-            }
-            if(isset($tagnames)){
-                $post->tags = $tagnames;
-                $tagnames = null;
             }
             return json_encode($post);
         } else {

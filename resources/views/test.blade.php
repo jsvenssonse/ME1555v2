@@ -10,10 +10,12 @@
         </style>
     </head>
     <body>
-        <form method="POST" action="api/post/delete" accept-charset="UTF-8">
-            <input name="_method" type="hidden" value="DELETE">
-            <input hidden="hidden" name="id" value="21" />
-            <input hidden="hidden" name="user_id" value="0" />
+
+        <form action="api/post/create" method="POST">
+            <input hidden="hidden" name="user_id" value="8" />
+            <input hidden="hidden" name="tags" value="ut" />
+            <input hidden="hidden" name="title" value="jens job blog" />
+            <input hidden="hidden" name="content" value="jag har jobbat mycket med anuglasr" />
             <input type="submit" value="Submit">
         </form>
     </body>
