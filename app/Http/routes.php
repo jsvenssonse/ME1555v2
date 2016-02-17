@@ -13,23 +13,25 @@
 Route::get('/test',function(){
     return view('test');
 });
+Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
+    //Users
+    Route::get('/users', 'UserController@showUsers');
+    Route::get('/user/{id}', 'UserController@showUser');
+    Route::get('/user/{id}/posts', 'UserController@showUserPost');
+    Route::put('/user/edit', 'UserController@editUser');
 
+    //Posts
+    Route::get('/posts', 'PostController@showPosts');
+    Route::get('/post/{id}', 'PostController@showPost');
+    Route::put('/post/edit', 'PostController@editPost');
+    Route::post('/post/create', 'PostController@createPost');
 
-//Users
-Route::get('/users', 'UserController@showUsers');
-Route::get('/user/{id}', 'UserController@showUser');
-Route::get('/user/{id}/posts', 'UserController@showUserPost');
-Route::put('/user/edit', 'UserController@editUser');
+    //Tag
+    Route::get('/tags', 'TagController@showTags');
+    Route::get('/tag/{name}', 'TagController@showTag');
 
-//Posts
-Route::get('/posts', ['middleware' => 'cors' ,'uses' => 'PostController@showPosts']);
-Route::get('/post/{id}', 'PostController@showPost');
-Route::put('/post/edit', 'PostController@editPost');
-Route::post('/post/create', 'PostController@createPost');
+});
 
-//Tag
-Route::get('/tags', 'TagController@showTags');
-Route::get('/tag/{name}', 'TagController@showTag');
 
 
 
