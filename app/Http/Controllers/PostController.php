@@ -13,16 +13,20 @@ class PostController extends Controller{
         $posts = DB::table('posts')->get();
         $tagnames = array();
         foreach ($posts as $post) {
+
+            //Fetch's firstname and lastname;
+            $user = DB::table('users')->where('id',$post->user_id)->first();
+            $post->firstname = $user->firstname;
+            $post->lastname = $user->lastname;
+
+            //Fetch tag names;
             $tags = DB::table('post_tag')->where('post_id',$post->id)->get(['post_id', 'tag_id']);
             foreach ($tags as $tag) {
-                $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
-                foreach ($names as $name) {
-                    $tagnames[] = $name->name;
-                }
+                $names[] = DB::table('tags')->where('id',$tag->tag_id)->first(['name'])->name;
             }
-            if(isset($tagnames)){
-                $post->tags = $tagnames;
-                $tagnames = null;
+            if(isset($names)){
+                $post->tags = $names;
+                $names = null;
             }
         }
         return json_encode($posts);
@@ -34,13 +38,9 @@ class PostController extends Controller{
             $tags = DB::table('post_tag')->where('post_id',$id)->get(['post_id', 'tag_id']);
             foreach ($tags as $tag) {
                 $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
-                foreach ($names as $name) {
-                    $tagnames[] = $name->name;
+                if(isset($names)){
+                    $post->tags = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
                 }
-            }
-            if(isset($tagnames)){
-                $post->tags = $tagnames;
-                $tagnames = null;
             }
             return json_encode($post);
         } else {
@@ -57,7 +57,8 @@ class PostController extends Controller{
     public function createPost(Request $request) {
         $data['title'] = $request->title;
         $data['content'] = $request->content;
-        DB::table('posts')->insert(['title' => $data['title'], 'content' => $data['content']]);
+        $data['user_id'] = $request->user_id;
+        DB::table('posts')->insert($data);
     }
 
     public function deletePost(Request $request){
