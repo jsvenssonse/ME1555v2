@@ -25,7 +25,7 @@ Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
     Route::get('/post/{id}', 'PostController@showPost');
     Route::put('/post/edit', 'PostController@editPost');
     Route::post('/post/create', 'PostController@createPost');
-
+    Route::delete('/post/delete', 'PostController@deletePost');
     //Tag
     Route::get('/tags', 'TagController@showTags');
     Route::get('/tag/{name}', 'TagController@showTag');

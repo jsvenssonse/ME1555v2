@@ -10,17 +10,17 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller{
 
     public function showUsers(){
-        $users = DB::select('SELECT * FROM users');
+        $users = DB::table('users')->get();
         return json_encode($users);
     }
 
     public function showUser($id){
-        $users = DB::select('SELECT * FROM users WHERE id = :id', ['id' => $id]);
+        $users = DB::table('users')->where('id',$id)->first();
         return json_encode($users);
     }
 
     public function showUserPost($user_id){
-        $posts = DB::select('SELECT * FROM posts WHERE USER_ID = :user_id', array('user_id' => $user_id));
+        $posts = DB::table('posts')->where('user_id',$user_id)->get();
         return json_encode($posts);
     }
 
