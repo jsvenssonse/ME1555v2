@@ -11,20 +11,17 @@ class PostController extends Controller{
 
     public function showPosts(){
         $posts = DB::table('posts')->get();
-        $tagnames = array();
         foreach ($posts as $post) {
-
             //Fetch's firstname and lastname;
             $user = DB::table('users')->where('id',$post->user_id)->first();
             $post->firstname = $user->firstname;
             $post->lastname = $user->lastname;
-
             //Fetch tag names;
             $tags = DB::table('post_tag')->where('post_id',$post->id)->get(['post_id', 'tag_id']);
-            foreach ($tags as $tag) {
-                $names[] = DB::table('tags')->where('id',$tag->tag_id)->first(['name'])->name;
-            }
-            if(isset($names)){
+            if(!empty($tags)){
+                foreach ($tags as $tag) {
+                    $names[] = DB::table('tags')->where('id',$tag->tag_id)->first(['name'])->name;
+                }
                 $post->tags = $names;
                 $names = null;
             }
@@ -35,12 +32,13 @@ class PostController extends Controller{
     public function showPost($id){
         $post = DB::table('posts')->where('id', $id)->first();
         if($post !== null){
-            $tags = DB::table('post_tag')->where('post_id',$id)->get(['post_id', 'tag_id']);
-            foreach ($tags as $tag) {
-                $names = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
-                if(isset($names)){
-                    $post->tags = DB::table('tags')->where('id',$tag->tag_id)->get(['name']);
+            $tags = DB::table('post_tag')->where('post_id',$post->id)->get(['post_id', 'tag_id']);
+            if(!empty($tags)){
+                foreach ($tags as $tag) {
+                    $names[] = DB::table('tags')->where('id',$tag->tag_id)->first(['name'])->name;
                 }
+                $post->tags = $names;
+                $names = null;
             }
             return json_encode($post);
         } else {
@@ -58,7 +56,19 @@ class PostController extends Controller{
         $data['title'] = $request->title;
         $data['content'] = $request->content;
         $data['user_id'] = $request->user_id;
-        DB::table('posts')->insert($data);
+        $tags = explode(', ', $request->tags);
+        $linktable['post_id'] = DB::table('posts')->insertGetId($data);
+        foreach ($tags as $tag) {
+            $tagid = DB::table('tags')->where('name',$tag)->first(['id']);
+            if($tagid === null){
+                $newtag['name'] = $tag;
+                $linktable['tag_id'] = DB::table('tags')->insertGetId($newtag);
+                DB::table('post_tag')->insert($linktable);
+            } else {
+                $linktable['tag_id'] = $tagid->id;
+                DB::table('post_tag')->insert($linktable);
+            }
+        }
     }
 
     public function deletePost(Request $request){
