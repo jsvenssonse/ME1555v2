@@ -13,11 +13,11 @@ class PostTagTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 40;
+        $limit = 80;
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('post_tag')->insert([
-                'post_id' => rand(1,20),
+                'post_id' => rand(1,40),
                 'tag_id' => rand(1,10),
             ]);
         }
