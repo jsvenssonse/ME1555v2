@@ -17,7 +17,7 @@ class PostTableSeeder extends Seeder {
             DB::table('posts')->insert([
                 'user_id' => rand(1,10),
                 'title' => $faker->word,
-                'content' => $faker->text($maxNbChars = 200),
+                'content' => $faker->text($maxNbChars = 600),
             ]);
         }
     }
