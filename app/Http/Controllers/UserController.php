@@ -21,6 +21,17 @@ class UserController extends Controller{
 
     public function showUserPost($user_id){
         $posts = DB::table('posts')->where('user_id',$user_id)->get();
+        foreach ($posts as $post) {
+            //Fetch tag names;
+            $tags = DB::table('post_tag')->where('post_id',$post->id)->get(['post_id', 'tag_id']);
+            if(!empty($tags)){
+                foreach ($tags as $tag) {
+                    $names[] = DB::table('tags')->where('id',$tag->tag_id)->first(['name'])->name;
+                }
+                $post->tags = $names;
+                $names = null;
+            }
+        }
         return json_encode($posts);
     }
 
