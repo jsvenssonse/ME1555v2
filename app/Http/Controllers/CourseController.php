@@ -11,11 +11,6 @@ class CourseController extends Controller
 {
     public function showCourses(){
         $courses = DB::table('courses')->get();
-        foreach ($courses as $course) {
-            $steps = DB::table('steps')->where('parent_type','course')->where('parent_id',$course->id)->get();
-            $course->steps = $steps;
-        }
-        var_dump($courses);
         return json_encode($courses);
     }
 
