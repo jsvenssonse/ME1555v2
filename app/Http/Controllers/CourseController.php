@@ -22,8 +22,9 @@ class CourseController extends Controller
     public function showCourse($id){
         $course = DB::table('courses')->where('id', $id)->first();
         $steps =  DB::table('steps')->where('parent_type','course')->where('parent_id',$id)->get();
-        $course->steps = $steps;
-
+        if(!empty($steps)){
+            $course->steps = $steps;
+        }
         return json_encode($course);
     }
 }
