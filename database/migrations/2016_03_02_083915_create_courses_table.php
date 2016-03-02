@@ -16,8 +16,7 @@ class CreateCoursesTable extends Migration
              $table->increments('id');
              $table->integer('user_id');
              $table->string('title');
-             $table->integer('cat');
-             $table->integer('tag');
+             $table->string('cat');
              $table->longText('desc');
              $table->time('deadline');
              $table->timestamps();
