@@ -14,6 +14,11 @@ class CourseController extends Controller
         return json_encode($courses);
     }
 
+    public function showCats(){
+        $cats = DB::table('courses')->get(['cat']);
+        return json_encode($cats);
+    }
+
 
     public function showCourses(){
         $courses = DB::table('courses')->get();
