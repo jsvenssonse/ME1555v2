@@ -16,10 +16,10 @@ class TagController extends Controller {
 
     public function showTag($name) {
         $tag = DB::table('tags')->where('name',$name)->first();
-        $course_id = DB::table('course_tag')->where('tag_id',$tag->id);
+        $course_id = DB::table('course_tag')->where('tag_id',$tag->id)->get();
         if(!empty($course_id)){
             foreach ($course_id as $key) {
-                $courses[] = DB::select('SELECT * FROM posts WHERE id = :post_id', ['post_id' =>  $key->post_id]);
+                $courses[] = DB::table('courses')->where('id',$key->course_id)->get();
             }
             return json_encode($courses);
         } else {

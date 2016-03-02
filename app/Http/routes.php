@@ -17,6 +17,7 @@ Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
     //Course
     Route::get('/courses','CourseController@showCourses');
     Route::get('/course/{id}', 'CourseController@showCourse');
+    Route::get('/cat/{name}', 'CourseController@showCat');
 
     //Users
     Route::get('/users', 'UserController@showUsers');
