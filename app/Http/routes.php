@@ -11,7 +11,7 @@
 |
 */
 Route::get('/test',function(){
-
+    
 });
 Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
     //Course
