@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostTagTableSeeder extends Seeder
+class CourseTagTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,11 @@ class PostTagTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 80;
+        $limit = 20;
 
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('post_tag')->insert([
-                'post_id' => rand(1,40),
+            DB::table('course_tag')->insert([
+                'course_id' => rand(1,5),
                 'tag_id' => rand(1,10),
             ]);
         }

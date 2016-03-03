@@ -14,10 +14,17 @@ Route::get('/test',function(){
     return view('test');
 });
 Route::group(['middleware' => ['cors'],'prefix' => 'api'], function () {
+    //Course
+    Route::get('/courses','CourseController@showCourses');
+    Route::get('/course/{id}', 'CourseController@showCourse');
+    Route::get('/cat/{name}', 'CourseController@showCat');
+    Route::get('/cats', 'CourseController@showCats');
+
     //Users
     Route::get('/users', 'UserController@showUsers');
     Route::get('/user/{id}', 'UserController@showUser');
-    Route::get('/user/{id}/posts', 'UserController@showUserPost');
+    Route::get('/user/{id}/posts', 'UserController@showUserPosts');
+    Route::get('/user/{id}/courses', 'UserController@showUserCourses');
     Route::put('/user/edit', 'UserController@editUser');
 
     //Posts

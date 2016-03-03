@@ -14,12 +14,16 @@ class UserController extends Controller{
         return json_encode($users);
     }
 
+    public function showUserCourses($user_id){
+
+    }
+
     public function showUser($id){
         $users = DB::table('users')->where('id',$id)->first();
         return json_encode($users);
     }
 
-    public function showUserPost($user_id){
+    public function showUserPosts($user_id){
         $posts = DB::table('posts')->where('user_id',$user_id)->get();
         foreach ($posts as $post) {
             //Fetch tag names;
