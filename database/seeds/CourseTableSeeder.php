@@ -13,28 +13,15 @@ class CourseTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 20;
+        $limit = 10;
         
-            
-        for ($i = 0; $i < $limit; $i++) {
-            $cat = array( "Programming", "General IT", "Science", "Planning" );
-            $rand_cat = $cat[array_rand($cat)];
-            if($rand_cat == "Programming") {
-                $user_id = rand(1,10);
-            }elseif($rand_cat == "General IT") {
-                $user_id = rand(1,10);
-            }elseif($rand_cat == "Science") {
-                $user_id = rand(1,10);
-            }else {
-                $user_id = rand(1,10);
-            }
+
         
             DB::table('courses')->insert([
-                'user_id' => $user_id,
-                'cat' => $rand_cat,
+                'user_id' => rand(1,10),
+                'cat' => $faker->word,
                 'title' => $faker->word,
                 'desc' => $faker->text($maxNbChars = 600),
             ]);
-        }
     }
 }
