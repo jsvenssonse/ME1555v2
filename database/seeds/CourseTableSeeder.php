@@ -19,7 +19,7 @@ class CourseTableSeeder extends Seeder
         for ($i = 0; $i < $limit; $i++) {
             DB::table('courses')->insert([
                 'user_id' => rand(1,10),
-                'cat' => $faker->word,
+                'cat' => $faker->word->unique(),
                 'title' => $faker->word,
                 'desc' => $faker->text($maxNbChars = 600),
             ]);
