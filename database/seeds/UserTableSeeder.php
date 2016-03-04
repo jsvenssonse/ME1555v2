@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
                         'email' => "Albert.Einstein@bth.se",
                         'stream_token' => hash('sha512', 'email'),
                     ]);
-        $limit = 20;
+        $limit = 10;
         
         for ($i = 1; $i < $limit; $i++) {
             $email = $faker->unique()->email;
