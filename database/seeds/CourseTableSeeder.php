@@ -16,13 +16,13 @@ class CourseTableSeeder extends Seeder
         $limit = 10;
         
             $collection = [
-                ['cat' => 'Programming',
-                'title' => "Visual C++", 
-                "desc" =>"Learn the basics of C++, from basic variable handling to advanced Object Oriented Concepts."
-                ],
                 ['cat' => 'Science',
                 'title' => "Atom Splitting", 
                 "desc" => "Crash course in atom splitting, DIY at home! All you need is a few home appliances, and you are set!"
+                ],
+                ['cat' => 'Programming',
+                'title' => "Visual C++", 
+                "desc" =>"Learn the basics of C++, from basic variable handling to advanced Object Oriented Concepts."
                 ],
                 ['cat' => 'Planning',
                 'title' => "My Trip to Paris", 
@@ -41,13 +41,15 @@ class CourseTableSeeder extends Seeder
                 "desc" => "My step by step guide on how to save the queen in super mario on gameboy color."
                 ],  
             ];
-            
-            
-            $cats = $collection[0]['cat'];
+
         
         for ($i = 0; $i < 6; $i++) {
+            
+            if ( $collection[$i]['cat'] == 'Science' ) { $id = 1; }
+            else { $id = rand(2,10); }
+            
             DB::table('courses')->insert([
-                'user_id' => rand(1,10),
+                'user_id' => $id,
                 'cat' => $collection[$i]['cat'],
                 'title' => $collection[$i]['title'],
                 'desc' => $collection[$i]['desc'],
